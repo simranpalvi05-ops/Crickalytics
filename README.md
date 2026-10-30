@@ -1,7 +1,5 @@
 <div align="center">
 
-
-
 <h1>🏏 Crickalytics</h1>
 <h3>ODI Cricket Analytics Dashboard</h3>
 
@@ -230,9 +228,29 @@ Ask questions about ODI players and records.
 
 ### 🏠 Home
 Dataset overview and dashboard purpose.
+<img width="800" alt="Home" src="https://github.com/user-attachments/assets/ae68362b-bef0-4cff-997c-9b007747357f" />
+
+### 👤 Player Analysis
+Bowler wickets against each opposition.
+<img width="800" alt="Player Analysis" src="https://github.com/user-attachments/assets/717e7ad3-bc49-4e2b-a450-f54f15ada2a0" />
+
+### 🌍 Team Analysis
+Global wicket-takers world map.
+<img width="800" alt="Team Analysis" src="https://github.com/user-attachments/assets/7e3fba74-e43e-46b6-97b6-f8a0890a642f" />
+
+### 📊 Match Analysis
+Fall of wickets and partnership progression for a selected match.
+<img width="800" alt="Match Analysis" src="https://github.com/user-attachments/assets/26e859a0-ac1d-405f-8d8a-d0407450e44d" />
 
 
-<img width="800" alt="Chatbot" src="https://github.com/user-attachments/assets/f0722cdf-4fe2-4807-9fc6-1db53c088386" />
+
+
+
+### 🤝 Partnership Analysis
+Top 10 highest ODI partnerships.
+<img width="800" alt="Partnership Analysis" src="https://github.com/user-attachments/assets/56dda608-b93d-4a8e-9ee7-6f063b62f1f2" />
+
+---
 
 ## 🚧 Limitations
 
