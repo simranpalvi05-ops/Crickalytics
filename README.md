@@ -3,7 +3,7 @@
 <h1>🏏 Crickalytics</h1>
 <h3>ODI Cricket Analytics Dashboard</h3>
 
-<p>An interactive dashboard to explore player, team, match and partnership insights from <b>4,700+ One Day International matches (1972–2023)</b>.</p>
+<p>An interactive dashboard to explore player, team, match and partnership insights from <b>4,700+ One Day International matches (1971–2024)</b>.</p>
 
 <img src="https://img.shields.io/badge/Python-3.9+-blue?logo=python&logoColor=white" alt="Python">
 <img src="https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit">
@@ -32,7 +32,7 @@ Cricket produces a huge amount of data, but raw scorecards are hard to read. **C
 
 **What you can explore**
 - How a batter or bowler performs against different oppositions
-- How teams compare across match phases (powerplay, middle overs, death overs)
+- How teams compare on wickets, partnerships and head-to-head records
 - Which batting pairs have been the most productive
 - Quick answers about ODI cricket through an AI chatbot
 
@@ -40,7 +40,9 @@ Cricket produces a huge amount of data, but raw scorecards are hard to read. **C
 
 | Matches analysed | Players found | Wickets recorded | Period covered |
 |:---:|:---:|:---:|:---:|
-| **4,739** | **2,820** | **61,386** | **1972 – 2023** |
+| **4,739** | **2,820** | **61,386** | **1971 – 2024** |
+
+> The match summary file lists 4,745 matches. The dashboard shows 4,739 because it counts matches present in the cleaned bowling data.
 
 ---
 
@@ -67,7 +69,6 @@ Cricket produces a huge amount of data, but raw scorecards are hard to read. **C
 <summary><b>👤 Player Analysis</b></summary>
 
 - **Bowler deep dive:** wickets against each opposition and economy-rate consistency (box plot)
-- **Death-overs analysis** for bowlers
 - **Batting performance:** runs progression (line chart) and boundary breakdown (pie chart)
 - **Batting and dismissal:** wicket number at which the batter fell
 - **Top 10 batting partners** for a selected batter
@@ -79,7 +80,7 @@ Cricket produces a huge amount of data, but raw scorecards are hard to read. **C
 
 - **Global wicket-takers map** (world choropleth)
 - **Team comparison** across wickets and partnerships
-- **Match-phase performance:** wickets and economy by phase of the innings
+- **Match-phase analysis** (powerplay, middle overs, death overs): approximate, see [Limitations](#-limitations)
 - **Detailed team phase analysis** with pie and bar charts
 - **Head-to-head analysis** between two teams
 
@@ -88,7 +89,7 @@ Cricket produces a huge amount of data, but raw scorecards are hard to read. **C
 <details>
 <summary><b>📊 Match Analysis</b></summary>
 
-- Fall of wickets and partnership progression for a selected match
+- Fall of wickets for a selected match
 - Partnership breakdown for each innings
 - Bowler performance in the match
 
@@ -146,7 +147,7 @@ Crickalytics/
 ├── player_info_clean.csv         # Player details
 ├── player_batting_summary.csv    # Batting summary per player
 ├── Final_match_summary.csv       # Match-level summary
-└── ODI_Match_Data.csv            # Match data used for batting analysis
+└── ODI_Match_Data.csv            # Ball-by-ball data for batting analysis (large, see below)
 ```
 
 > `.env` (your private API key) is **not** stored in the repository.
@@ -157,13 +158,13 @@ Crickalytics/
 
 | File | What it contains |
 |------|------------------|
-| `bowling_clean.csv` | Bowling figures (wickets, economy, opposition, match phase) |
+| `bowling_clean.csv` | Bowling figures per bowler per match (wickets, economy, overs, opposition) |
 | `fow_clean.csv` | Fall-of-wickets records |
 | `partnership_clean.csv` | Batting partnerships (players, runs, balls) |
 | `player_info_clean.csv` | Player names and details |
 | `player_batting_summary.csv` | Aggregated batting statistics |
 | `Final_match_summary.csv` | Match-level results |
-| `ODI_Match_Data.csv` | Detailed ODI match data |
+| `ODI_Match_Data.csv` | Ball-by-ball ODI data used for the batting analysis. It is a large file, so download it separately and place it in the project folder. Without it, the batting section shows an error and the rest of the app still works. |
 
 **Data sources:** open cricket datasets from [Kaggle](https://www.kaggle.com) and [ESPNcricinfo StatsGuru](https://stats.espncricinfo.com), cleaned and processed with Pandas. The data belongs to its original sources and is used here for learning and analysis.
 
@@ -239,12 +240,8 @@ Global wicket-takers world map.
 <img width="800" alt="Team Analysis" src="https://github.com/user-attachments/assets/7e3fba74-e43e-46b6-97b6-f8a0890a642f" />
 
 ### 📊 Match Analysis
-Fall of wickets and partnership progression for a selected match.
+Fall of wickets and partnerships for a selected match.
 <img width="800" alt="Match Analysis" src="https://github.com/user-attachments/assets/26e859a0-ac1d-405f-8d8a-d0407450e44d" />
-
-
-
-
 
 ### 🤝 Partnership Analysis
 Top 10 highest ODI partnerships.
@@ -257,11 +254,15 @@ Top 10 highest ODI partnerships.
 - Data is static (CSV files), so it does not update after new matches
 - The analysis is descriptive; no machine learning prediction models are included
 - The chatbot answers from a general LLM, not directly from the dashboard datasets
+- The bowling data stores each bowler's total overs per match, not the over number in the innings, so the match-phase charts (powerplay, middle, death overs) are approximate
+- The batting analysis needs `ODI_Match_Data.csv`, which is not included in the repository
+- Match counts differ slightly across files (4,745 in the match summary, 4,739 in the cleaned bowling data) because of data cleaning
 
 ---
 
 ## 🚀 Future Improvements
 
+- Rebuild the match-phase charts from ball-by-ball data for accurate powerplay and death-overs analysis
 - Live data through a cricket API and auto-updating dashboards
 - Match outcome and player performance prediction using machine learning
 - Ground the chatbot in the dashboard datasets
